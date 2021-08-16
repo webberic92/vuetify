@@ -1,16 +1,7 @@
 <template>
-<div class="home">
-<h1>Homepage</h1>
-<v-btn class="hidden-md-and-up">Click Me</v-btn>
-</div>
+  <div class="home">
+    <h1>This is the homepage</h1>
+   
+
+  </div>
 </template>
-
-<script>
-
-
-export default {
-  name: 'Home',
-  components: {
-  }
-}
-</script>
