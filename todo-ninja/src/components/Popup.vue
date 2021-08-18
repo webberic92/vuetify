@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="600px">
+  <v-dialog max-width="600px" v-model="dialog">
     <v-btn flat slot="activator" class="success">Add New Project</v-btn>
     <v-card>
       <v-card-title>
@@ -58,6 +58,7 @@ export default {
         }
         db.collection('projects').add(project).then(() =>{
           this.loading = false
+          this.dialog =false
           console.log('added to db')
         })
       }
