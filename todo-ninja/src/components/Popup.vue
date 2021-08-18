@@ -28,6 +28,8 @@
 
 <script>
 import format from 'date-fns/format'
+import * as fs from 'date-fns'
+
 export default {
   data() {
     return {
@@ -51,7 +53,7 @@ export default {
   computed: {
     formattedDate () {
       console.log(this.due)
-      return this.due ? format(this.due, 'Do MMM YYYY') : ''
+      return this.due ? this.due : ''
     }
   }
 }
