@@ -19,7 +19,7 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn flat @click="submit" class="success mx-0 mt-3">Add Project</v-btn>
+          <v-btn flat @click="submit" class="success mx-0 mt-3" :loading=loading>Add Project</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -40,12 +40,14 @@ export default {
       inputRules: [
         v => !!v || 'This field is required',
         v => v.length >= 3 || 'Minimum length is 3 characters'
-      ]
+      ],
+      loading :false
     }
   },
   methods: {
     submit() {
       if(this.$refs.form.validate()) {
+        this.loading = true
         console.log(this.title, this.content)
         const project = {
           title: this.title,
@@ -55,6 +57,7 @@ export default {
           status: 'ongoing'
         }
         db.collection('projects').add(project).then(() =>{
+          this.loading = false
           console.log('added to db')
         })
       }
