@@ -32,17 +32,35 @@
 </template>
 
 <script>
+
+import db from '@/fb'
+
 export default {
   data() {
     return {
       team: [
-        { name: 'Ducky Webb', role: 'Master', avatar: '/golduck.jpg' },
-        { name: 'Ryu', role: 'Graphic designer', avatar: '/avatar-2.png' },
-        { name: 'Chun Li', role: 'Web developer', avatar: '/avatar-3.png' },
-        { name: 'Gouken', role: 'Social media maverick', avatar: '/avatar-4.png' },
-        { name: 'Yoshi', role: 'Sales guru', avatar: '/avatar-5.png'}
+        // { name: 'Ducky Webb', role: 'Master', avatar: '/golduck.jpg' },
+        // { name: 'Ryu', role: 'Graphic designer', avatar: '/avatar-2.png' },
+        // { name: 'Chun Li', role: 'Web developer', avatar: '/avatar-3.png' },
+        // { name: 'Gouken', role: 'Social media maverick', avatar: '/avatar-4.png' },
+        // { name: 'Yoshi', role: 'Sales guru', avatar: '/avatar-5.png'}
       ]
     }
+  },
+    created(){
+    db.collection('team').onSnapshot(res => {
+      
+      const changes = res.docChanges();
+
+      changes.forEach( change => {
+        if (change.type === 'added'){
+            this.team.push({
+              ...change.doc.data(),
+              id: change.doc.id
+            })
+        }
+      })
+    })
   }
 }
 </script>

@@ -59,7 +59,7 @@ export default {
         db.collection('projects').add(project).then(() =>{
           this.loading = false
           this.dialog =false
-          console.log('added to db')
+          this.$emit('projectAdded')
         })
       }
     }
